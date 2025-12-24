@@ -88,13 +88,14 @@ class ParticleNetwork {
         return {
             x: x,
             y: y,
-            vx: 0,
-            vy: 0,
-            homeX: x, // Original position for magnet effect
+            vx: (Math.random() - 0.5) * 1.5, // Initial velocity for lively movement
+            vy: (Math.random() - 0.5) * 1.5,
+            homeX: x,
             homeY: y,
             size: Math.random() * 2 + 1.5,
             color: this.config.colors[Math.floor(Math.random() * this.config.colors.length)],
-            phase: Math.random() * Math.PI * 2
+            phase: Math.random() * Math.PI * 2,
+            speed: 0.3 + Math.random() * 0.4 // Individual swim speed
         };
     }
 
@@ -134,11 +135,12 @@ class ParticleNetwork {
         const time = Date.now() * 0.001;
 
         this.particles.forEach(p => {
-            // Organic swimming drift
-            const driftX = Math.sin(time * 0.5 + p.phase) * 0.3;
-            const driftY = Math.cos(time * 0.3 + p.phase * 1.5) * 0.3;
-            p.vx += driftX * 0.02;
-            p.vy += driftY * 0.02;
+            // Organic swimming drift - MORE DYNAMIC
+            const swimSpeed = p.speed || 0.5;
+            const driftX = Math.sin(time * 0.8 + p.phase) * swimSpeed;
+            const driftY = Math.cos(time * 0.6 + p.phase * 1.3) * swimSpeed;
+            p.vx += driftX * 0.08;
+            p.vy += driftY * 0.08;
 
             // MAGNET: Gentle pull toward home position
             const homeDistX = p.homeX - p.x;
@@ -179,9 +181,9 @@ class ParticleNetwork {
             p.x += p.vx;
             p.y += p.vy;
 
-            // Friction
-            p.vx *= 0.96;
-            p.vy *= 0.96;
+            // Friction - reduced for more momentum
+            p.vx *= 0.985;
+            p.vy *= 0.985;
 
             // Soft wrap around edges
             if (p.x < -50) p.x = this.width + 50;
