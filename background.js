@@ -181,9 +181,17 @@ class ParticleNetwork {
             p.x += p.vx;
             p.y += p.vy;
 
-            // Friction - reduced for more momentum
-            p.vx *= 0.985;
-            p.vy *= 0.985;
+            // Friction - balanced for smooth motion
+            p.vx *= 0.95;
+            p.vy *= 0.95;
+
+            // VELOCITY CAP - prevent particles from moving too fast
+            const maxSpeed = 3;
+            const speed = Math.sqrt(p.vx * p.vx + p.vy * p.vy);
+            if (speed > maxSpeed) {
+                p.vx = (p.vx / speed) * maxSpeed;
+                p.vy = (p.vy / speed) * maxSpeed;
+            }
 
             // Soft wrap around edges
             if (p.x < -50) p.x = this.width + 50;
