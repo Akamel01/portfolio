@@ -81,3 +81,21 @@ Don't forget to replace the "Coming Soon" resume link in `index.html` once you h
     ```html
     <a href="assets/resume.pdf" target="_blank" ...>
     ```
+
+---
+
+## How to Update Your Site (Continuous Deployment) 🔄
+
+Once you have set up **Method 2**, updating your website is simple. You never need to drag-and-drop again.
+
+1.  **Make changes** to your files (e.g., add a new project, fix a typo).
+2.  **Open Terminal** in your portfolio folder.
+3.  Run these 3 commands:
+
+    ```bash
+    git add .
+    git commit -m "Describe your changes here"
+    git push
+    ```
+
+4.  **Wait 30 seconds**. Netlify detects the push and automatically rebuilds your site. Refresh your URL to see the changes!
