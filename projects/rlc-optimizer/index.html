@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RLC Optimization | Portfolio | Ahmed Kamel</title>
+    <meta name="description"
+        content="GPU-accelerated probabilistic optimization for Red Light Camera site selection. Maximizing road safety through Bayesian modeling and Monte Carlo simulation.">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap"
+        rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="nav-back"
+                style="color: var(--text-secondary); margin-right: 24px; display: flex; align-items: center; gap: 6px;">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M19 12H5M12 19l-7-7 7-7" />
+                </svg>
+                Portfolio
+            </a>
+            <a href="#hero" class="nav-logo">RLC<span>Optimizer</span></a>
+            <ul class="nav-links">
+                <li><a href="#problem">Problem</a></li>
+                <li><a href="#methodology">Methodology</a></li>
+                <li><a href="#technical">Technical</a></li>
+                <li><a href="#challenges">Challenges</a></li>
+                <li><a href="#results">Results</a></li>
+                <li><a href="#skills">Skills</a></li>
+            </ul>
+            <button class="nav-toggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-content">
+            <div class="hero-badge">Data Science & Optimization</div>
+            <h1 class="hero-title">
+                <span class="gradient-text">Red Light Camera</span>
+                <br>Site Optimization
+            </h1>
+            <p class="hero-subtitle">
+                Maximizing road safety through GPU-accelerated probabilistic optimization,
+                Bayesian hierarchical modeling, and interactive decision support.
+            </p>
+
+            <!-- Key Metrics -->
+            <div class="hero-metrics">
+                <div class="metric-card">
+                    <span class="metric-value">BYM2 Spatial</span>
+                    <span class="metric-label">Hierarchical Bayesian with Spatial Correlation</span>
+                </div>
+                <div class="metric-card">
+                    <span class="metric-value">Stochastic</span>
+                    <span class="metric-label">Uncertainty-Aware Optimization for Risk</span>
+                </div>
+                <div class="metric-card">
+                    <span class="metric-value">$1M–$20M</span>
+                    <span class="metric-label">Interactive Budget Decision Support</span>
+                </div>
+            </div>
+
+            <a href="#framework" class="hero-cta">
+                Explore the Project
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 5v14M5 12l7 7 7-7" />
+                </svg>
+            </a>
+        </div>
+    </section>
+
+    <!-- Data Framework Infographic -->
+    <section id="framework" class="section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">The Framework</span>
+                <h2 class="section-title">From Data to Decisions</h2>
+                <p class="section-description">A sophisticated methodology using statistical modeling and optimization
+                    to maximize Net Societal Benefit.</p>
+            </div>
+            <div class="framework-image-container">
+                <img src="assets/data_funnel_infographic.jpg"
+                    alt="Data-Driven Framework: From crash history, traffic volume, and road data through predictive modeling to optimal camera placement"
+                    class="framework-image">
+            </div>
+        </div>
+    </section>
+
+    <!-- Problem Statement -->
+    <section id="problem" class="section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">The Challenge</span>
+                <h2 class="section-title">Why This Matters</h2>
+            </div>
+
+            <div class="problem-grid">
+                <div class="problem-card glass-panel">
+                    <div class="problem-icon">🚦</div>
+                    <h3>1,500+ Intersections</h3>
+                    <p>BC has 1,500+ signalized intersections but limited RLC budget.</p>
+                </div>
+                <div class="problem-card glass-panel">
+                    <div class="problem-icon">⚖️</div>
+                    <h3>Complex Trade-offs</h3>
+                    <p>RLCs reduce angle crashes 30% but increase rear-end 10%.</p>
+                </div>
+                <div class="problem-card glass-panel">
+                    <div class="problem-icon">💰</div>
+                    <h3>$120K per Camera</h3>
+                    <p>$120K capital + $37K/yr O&M. Every decision must maximize value.</p>
+                </div>
+                <div class="problem-card glass-panel">
+                    <div class="problem-icon">🎯</div>
+                    <h3>Optimization Goal</h3>
+                    <p>Select ~200 sites to maximize Net Societal Benefit (95% CI).</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Methodology -->
+    <section id="methodology" class="section section-alt">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">The Approach</span>
+                <h2 class="section-title">Methodology Pipeline</h2>
+            </div>
+
+            <div class="methodology-flow">
+                <div class="flow-step glass-panel">
+                    <div class="step-number">1</div>
+                    <h3>Data Ingestion</h3>
+                    <p>Historical crash records, AADT, site covariates, existing camera locations</p>
+                </div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step glass-panel">
+                    <div class="step-number">2</div>
+                    <h3>Bayesian Model</h3>
+                    <p>Full Bayesian hierarchical model with CAR spatial structure for crash prediction</p>
+                </div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step glass-panel">
+                    <div class="step-number">3</div>
+                    <h3>Monte Carlo Risk Simulation</h3>
+                    <p>Propagate uncertainty using 10,000 GPU-accelerated scenarios per site to generate 95% credible
+                        intervals.</p>
+                </div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step glass-panel">
+                    <div class="step-number">4</div>
+                    <h3>Optimization</h3>
+                    <p>MILP & Genetic Algorithms for multi-scenario site selection</p>
+                </div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step glass-panel">
+                    <div class="step-number">5</div>
+                    <h3>Visualization</h3>
+                    <p>Interactive Leaflet.js dashboard with budget slider and heatmaps</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technical Deep Dive -->
+    <section id="technical" class="section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Under the Hood</span>
+                <h2 class="section-title">Technical Deep Dive</h2>
+            </div>
+
+            <div class="carousel-wrapper">
+                <button class="carousel-nav prev" data-carousel="tech-carousel">←</button>
+                <div class="carousel" id="tech-carousel">
+                    <div class="carousel-item">
+                        <div class="tech-card glass-panel">
+                            <div class="tech-icon">🧠</div>
+                            <h3>BYM2 Hierarchical Spatial Model</h3>
+                            <p><strong>60% RMSE reduction</strong> vs. baseline. Negative Binomial likelihood with BYM2
+                                spatial
+                                structure (ICAR + IID components). 5-nearest-neighbor graph, ~64% variance from spatial
+                                effects.</p>
+                            <div class="tech-tags">
+                                <span class="tag">BYM2 Prior</span>
+                                <span class="tag">Stan/MCMC</span>
+                                <span class="tag">Spatial Econometrics</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="tech-card glass-panel">
+                            <div class="tech-icon">⚡</div>
+                            <h3>GPU-Vectorized Monte Carlo</h3>
+                            <p>Full uncertainty propagation: (Sites × Sims × CrashTypes × Severities) = <strong>~36M
+                                    parallel
+                                    calculations</strong>. CuPy broadcasts posterior samples across benefit matrices in
+                                seconds.</p>
+                            <div class="tech-tags">
+                                <span class="tag">CuPy</span>
+                                <span class="tag">CUDA</span>
+                                <span class="tag">Matrix Broadcasting</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="tech-card glass-panel">
+                            <div class="tech-icon">🎯</div>
+                            <h3>Multi-Scenario Optimization</h3>
+                            <p><strong>3 Scenarios:</strong> Direct (MILP) • Halo 1km (Linearized) • Spillover 2km
+                                (GPU-GA)</p>
+                            <p style="margin-top:12px;"><strong>Key Tricks:</strong> Top-N search space reduction (10×
+                                speedup),
+                                pre-computed benefit matrices, vectorized fitness evaluation.</p>
+                            <div class="tech-tags">
+                                <span class="tag">MILP</span>
+                                <span class="tag">Genetic Algorithm</span>
+                                <span class="tag">Heuristics</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="tech-card glass-panel">
+                            <div class="tech-icon">📊</div>
+                            <h3>Interactive Dashboard</h3>
+                            <p>Leaflet.js visualization with real-time budget slider ($1M–$20M), toggleable layers,
+                                multiple heatmaps, and detailed marker popups for stakeholder exploration.</p>
+                            <div class="tech-tags">
+                                <span class="tag">Folium</span>
+                                <span class="tag">Leaflet.js</span>
+                                <span class="tag">JavaScript</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel-nav next" data-carousel="tech-carousel">→</button>
+            </div>
+            <div class="carousel-dots" data-carousel="tech-carousel">
+                <button class="carousel-dot active" data-index="0"></button>
+                <button class="carousel-dot" data-index="1"></button>
+                <button class="carousel-dot" data-index="2"></button>
+                <button class="carousel-dot" data-index="3"></button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Spatial Innovation -->
+    <section id="spatial-innovation" class="section section-alt">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Key Innovation</span>
+                <h2 class="section-title">Why Spatial Correlation?</h2>
+            </div>
+
+            <div class="carousel-wrapper">
+                <button class="carousel-nav prev" data-carousel="spatial-carousel">←</button>
+                <div class="carousel" id="spatial-carousel">
+                    <div class="carousel-item">
+                        <div class="glass-panel" style="padding: 30px; text-align: center;">
+                            <h3 style="margin-bottom: 16px;">Industry Standard vs Our Approach</h3>
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; text-align: left;">
+                                <div>
+                                    <p><strong>❌ Empirical Bayes:</strong> Assumes intersections are independent. Fails
+                                        with sparse data.</p>
+                                </div>
+                                <div>
+                                    <p><strong>✓ Full Bayes + Spatial CAR:</strong> Borrows strength from nearby sites.
+                                        <strong>60% RMSE reduction.</strong>
+                                    </p>
+                                </div>
+                            </div>
+                            <img src="assets/spatial_municipalities.png" alt="Spatial effects"
+                                style="max-height: 250px; margin: 20px auto 0; border-radius: 8px;">
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="glass-panel" style="padding: 30px; text-align: center;">
+                            <h3 style="margin-bottom: 16px;">Model Fit: Before Spatial Correlation</h3>
+                            <img src="assets/spatial_before.png" alt="Before"
+                                style="max-height: 320px; margin: 0 auto; border-radius: 8px;">
+                            <p class="gallery-caption" style="margin-top: 12px;">Poor fit for high-risk sites</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="glass-panel" style="padding: 30px; text-align: center;">
+                            <h3 style="margin-bottom: 16px;">Model Fit: After Spatial Correlation</h3>
+                            <img src="assets/spatial_after.png" alt="After"
+                                style="max-height: 320px; margin: 0 auto; border-radius: 8px;">
+                            <p class="gallery-caption" style="margin-top: 12px;">Near-perfect alignment with Spatial CAR
+                            </p>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="glass-panel" style="padding: 30px; text-align: center;">
+                            <h3 style="margin-bottom: 16px;">Variance Decomposition</h3>
+                            <img src="assets/spatial_diagnostics.png" alt="Diagnostics"
+                                style="max-height: 320px; margin: 0 auto; border-radius: 8px;">
+                            <p class="gallery-caption" style="margin-top: 12px;">62.7% Spatial vs 37.4% Non-spatial
+                                variance</p>
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel-nav next" data-carousel="spatial-carousel">→</button>
+            </div>
+            <div class="carousel-dots" data-carousel="spatial-carousel">
+                <button class="carousel-dot active" data-index="0"></button>
+                <button class="carousel-dot" data-index="1"></button>
+                <button class="carousel-dot" data-index="2"></button>
+                <button class="carousel-dot" data-index="3"></button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Challenges & Solutions -->
+    <section id="challenges" class="section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Problem Solving</span>
+                <h2 class="section-title">Challenges & Solutions</h2>
+            </div>
+
+            <div class="carousel-wrapper">
+                <button class="carousel-nav prev" data-carousel="challenges-carousel">←</button>
+                <div class="carousel" id="challenges-carousel">
+                    <div class="carousel-item">
+                        <div class="challenge-card glass-panel">
+                            <div class="challenge-problem">
+                                <span class="label">Challenge</span>
+                                <h3>Crash Data Uncertainty</h3>
+                                <p>Historical crash counts are noisy and subject to random variation.</p>
+                            </div>
+                            <div class="challenge-arrow">→</div>
+                            <div class="challenge-solution">
+                                <span class="label solution-label">Solution</span>
+                                <h3>Bayesian Posterior Propagation</h3>
+                                <p>Full Bayesian model with 95% credible intervals on all outputs.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="challenge-card glass-panel">
+                            <div class="challenge-problem">
+                                <span class="label">Challenge</span>
+                                <h3>Regression to Mean Bias</h3>
+                                <p>High-crash sites may appear improved due to statistical regression.</p>
+                            </div>
+                            <div class="challenge-arrow">→</div>
+                            <div class="challenge-solution">
+                                <span class="label solution-label">Solution</span>
+                                <h3>Hierarchical Bayes + Spatial CAR</h3>
+                                <p>Multi-site borrowing strength outperforms standard Empirical Bayes.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="challenge-card glass-panel">
+                            <div class="challenge-problem">
+                                <span class="label">Challenge</span>
+                                <h3>Computational Cost</h3>
+                                <p>10K simulations × 200 sites = billions of calculations.</p>
+                            </div>
+                            <div class="challenge-arrow">→</div>
+                            <div class="challenge-solution">
+                                <span class="label solution-label">Solution</span>
+                                <h3>CuPy GPU Vectorization</h3>
+                                <p>Reduced from <strong>hours to &lt;30 seconds</strong> using GPU broadcasting.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="challenge-card glass-panel">
+                            <div class="challenge-problem">
+                                <span class="label">Challenge</span>
+                                <h3>Non-Linear Optimization</h3>
+                                <p>Spatial interactions create quadratic (QUBO) structure.</p>
+                            </div>
+                            <div class="challenge-arrow">→</div>
+                            <div class="challenge-solution">
+                                <span class="label solution-label">Solution</span>
+                                <h3>Hybrid Algorithms</h3>
+                                <p>Linearized MILP for Scenarios A/B, GPU-GA for Scenario C.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="challenge-card glass-panel">
+                            <div class="challenge-problem">
+                                <span class="label">Challenge</span>
+                                <h3>Stakeholder Communication</h3>
+                                <p>Decision-makers need interactive exploration, not static reports.</p>
+                            </div>
+                            <div class="challenge-arrow">→</div>
+                            <div class="challenge-solution">
+                                <span class="label solution-label">Solution</span>
+                                <h3>Interactive Dashboard</h3>
+                                <p>Budget slider, scenario comparison, and toggleable layers.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel-nav next" data-carousel="challenges-carousel">→</button>
+            </div>
+            <div class="carousel-dots" data-carousel="challenges-carousel">
+                <button class="carousel-dot active" data-index="0"></button>
+                <button class="carousel-dot" data-index="1"></button>
+                <button class="carousel-dot" data-index="2"></button>
+                <button class="carousel-dot" data-index="3"></button>
+                <button class="carousel-dot" data-index="4"></button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Results -->
+    <section id="results" class="section section-alt">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Outcomes</span>
+                <h2 class="section-title">Results & Impact</h2>
+            </div>
+
+            <!-- Key Metrics -->
+            <div class="results-metrics">
+                <div class="result-metric glass-panel reveal reveal-delay-1">
+                    <span class="result-icon">💰</span>
+                    <div class="result-content">
+                        <span class="result-value">$9.2M</span>
+                        <span class="result-label">Net Societal Benefit</span>
+                    </div>
+                </div>
+                <div class="result-metric glass-panel reveal reveal-delay-2">
+                    <span class="result-icon">📊</span>
+                    <div class="result-content">
+                        <span class="result-value">3.93:1</span>
+                        <span class="result-label">Benefit-Cost Ratio</span>
+                    </div>
+                </div>
+                <div class="result-metric glass-panel reveal reveal-delay-3">
+                    <span class="result-icon">🚗</span>
+                    <div class="result-content">
+                        <span class="result-value">~43</span>
+                        <span class="result-label">Crashes Prevented/Year</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Gallery Carousel -->
+            <div class="carousel-wrapper" style="margin-top: 20px;">
+                <button class="carousel-nav prev" data-carousel="gallery-carousel">←</button>
+                <div class="carousel" id="gallery-carousel">
+                    <div class="carousel-item">
+                        <div class="gallery-item glass-panel" style="padding: 20px; text-align: center;">
+                            <img src="assets/sensitivity_nsb_vs_budget.png" alt="NSB vs Budget"
+                                style="max-height: 280px; margin: 0 auto;">
+                            <span class="gallery-caption">NSB vs Budget with 95% CI</span>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="gallery-item glass-panel" style="padding: 20px; text-align: center;">
+                            <img src="assets/cumulative_benefit_curve.png" alt="Cumulative benefit curve"
+                                style="max-height: 280px; margin: 0 auto;">
+                            <span class="gallery-caption">Cumulative Benefit Curve</span>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="gallery-item glass-panel" style="padding: 20px; text-align: center;">
+                            <img src="assets/efficiency_frontier.png" alt="Efficiency frontier"
+                                style="max-height: 280px; margin: 0 auto;">
+                            <span class="gallery-caption">Optimization Frontier</span>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="gallery-item glass-panel" style="padding: 20px; text-align: center;">
+                            <img src="assets/geospatial_hotspots.png" alt="Geospatial hotspots"
+                                style="max-height: 280px; margin: 0 auto;">
+                            <span class="gallery-caption">Geospatial Hotspots</span>
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel-nav next" data-carousel="gallery-carousel">→</button>
+            </div>
+            <div class="carousel-dots" data-carousel="gallery-carousel">
+                <button class="carousel-dot active" data-index="0"></button>
+                <button class="carousel-dot" data-index="1"></button>
+                <button class="carousel-dot" data-index="2"></button>
+                <button class="carousel-dot" data-index="3"></button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Dashboard -->
+    <section id="dashboard" class="section">
+        <div class="container"
+            style="height: 100%; display: flex; flex-direction: column; max-width: 95vw; width: 100%;">
+            <div class="section-header" style="flex-shrink: 0;">
+                <span class="section-tag">Explore</span>
+                <h2 class="section-title">Interactive Dashboard</h2>
+            </div>
+            <div class="map-container glass-panel" style="flex: 1; min-height: 0; margin-top: 16px; width: 100%;">
+                <iframe src="assets/interactive_map_slider.html" title="RLC Optimization Dashboard"
+                    style="width: 100%; height: 90%; min-height: 420px; border: none; border-radius: 12px;"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills -->
+    <section id="skills" class="section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Expertise</span>
+                <h2 class="section-title">Skills Demonstrated</h2>
+            </div>
+
+            <div class="skills-grid">
+                <div class="skill-category glass-panel">
+                    <h3>Programming</h3>
+                    <div class="skill-items">
+                        <span class="skill-badge">Python</span>
+                        <span class="skill-badge">JavaScript</span>
+                        <span class="skill-badge">HTML/CSS</span>
+                        <span class="skill-badge">SQL</span>
+                    </div>
+                </div>
+
+                <div class="skill-category glass-panel">
+                    <h3>Data Science</h3>
+                    <div class="skill-items">
+                        <span class="skill-badge">NumPy</span>
+                        <span class="skill-badge">Pandas</span>
+                        <span class="skill-badge">SciPy</span>
+                        <span class="skill-badge">Bayesian Statistics</span>
+                    </div>
+                </div>
+
+                <div class="skill-category glass-panel">
+                    <h3>GPU Computing</h3>
+                    <div class="skill-items">
+                        <span class="skill-badge">CuPy</span>
+                        <span class="skill-badge">CUDA</span>
+                        <span class="skill-badge">Vectorization</span>
+                    </div>
+                </div>
+
+                <div class="skill-category glass-panel">
+                    <h3>Optimization</h3>
+                    <div class="skill-items">
+                        <span class="skill-badge">MILP</span>
+                        <span class="skill-badge">Genetic Algorithms</span>
+                        <span class="skill-badge">QUBO</span>
+                        <span class="skill-badge">Heuristics</span>
+                    </div>
+                </div>
+
+                <div class="skill-category glass-panel">
+                    <h3>Visualization</h3>
+                    <div class="skill-items">
+                        <span class="skill-badge">Matplotlib</span>
+                        <span class="skill-badge">Seaborn</span>
+                        <span class="skill-badge">Folium</span>
+                        <span class="skill-badge">Leaflet.js</span>
+                    </div>
+                </div>
+
+                <div class="skill-category glass-panel">
+                    <h3>Domain Expertise</h3>
+                    <div class="skill-items">
+                        <span class="skill-badge">Traffic Safety</span>
+                        <span class="skill-badge">Economic Analysis</span>
+                        <span class="skill-badge">GIS</span>
+                        <span class="skill-badge">Cost-Benefit</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <section id="footer" class="section section-alt">
+        <div class="container" style="text-align: center;">
+            <div class="section-header">
+                <span class="section-tag">Summary</span>
+                <h2 class="section-title">Key Takeaway</h2>
+            </div>
+
+            <p
+                style="font-size: 1.3rem; color: var(--text-secondary); max-width: 800px; margin: 0 auto 40px; line-height: 1.6;">
+                This project demonstrates how <strong>Bayesian spatial modeling</strong> combined with
+                <strong>GPU-accelerated optimization</strong>
+                can transform traffic safety investment decisions—identifying high-impact sites that traditional methods
+                miss.
+            </p>
+
+            <!-- Affiliations -->
+            <div style="margin-bottom: 40px;">
+                <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 16px;">Research conducted in
+                    collaboration with:</p>
+                <div style="display: flex; justify-content: center; align-items: center; gap: 48px; flex-wrap: wrap;">
+                    <img src="assets/icbc_logo.png" alt="ICBC" style="height: 60px; filter: brightness(1.1);">
+                    <img src="assets/bcirpu_logo.png" alt="BC Injury Research and Prevention Unit"
+                        style="height: 40px; filter: brightness(1.1);">
+                </div>
+            </div>
+
+            <!-- Action Links -->
+            <div style="display: flex; justify-content: center; gap: 24px; flex-wrap: wrap; margin-bottom: 40px;">
+                <a href="#" class="hero-cta" style="opacity: 0.6; cursor: not-allowed;">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                        <polyline points="14 2 14 8 20 8" />
+                        <line x1="16" y1="13" x2="8" y2="13" />
+                        <line x1="16" y1="17" x2="8" y2="17" />
+                    </svg>
+                    Resume (Coming Soon)
+                </a>
+                <a href="https://www.linkedin.com/in/akamel01/" target="_blank" rel="noopener" class="hero-cta"
+                    style="background: #0077b5;">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path
+                            d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+                    </svg>
+                    LinkedIn Profile
+                </a>
+            </div>
+
+            <!-- Copyright -->
+            <p style="font-size: 0.85rem; color: var(--text-muted);">
+                © 2024 Ahmed Kamel. Built with passion for data science and road safety.
+            </p>
+        </div>
+    </section>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+</body>
+
+</html>

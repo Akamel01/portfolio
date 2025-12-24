@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real-Time AV Safety Assessment | Portfolio | Ahmed Kamel</title>
+    <meta name="description"
+        content="Bayesian Extreme Value Theory model for predicting crash risk from autonomous vehicle sensor data in real-time, with cross-location transferability.">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap"
+        rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="nav-back"
+                style="color: var(--text-secondary); margin-right: 24px; display: flex; align-items: center; gap: 6px;">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M19 12H5M12 19l-7-7 7-7" />
+                </svg>
+                Portfolio
+            </a>
+            <a href="#hero" class="nav-logo">AV<span>Safety</span></a>
+            <ul class="nav-links">
+                <li><a href="#problem">Problem</a></li>
+                <li><a href="#methodology">Methodology</a></li>
+                <li><a href="#technical">Technical</a></li>
+                <li><a href="#challenges">Challenges</a></li>
+                <li><a href="#skills">Skills</a></li>
+            </ul>
+            <button class="nav-toggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-content">
+            <div class="hero-badge">Autonomous Vehicles & Safety AI</div>
+            <h1 class="hero-title">
+                <span class="gradient-text">Real-Time AV Safety</span>
+                <br>Assessment
+            </h1>
+            <p class="hero-subtitle">
+                Predicting crash risk from autonomous vehicle sensor data using Bayesian Extreme Value Theory—before
+                crashes happen.
+            </p>
+
+            <!-- Key Metrics -->
+            <div class="hero-metrics">
+                <div class="metric-card">
+                    <span class="metric-value">EVT + Bayesian</span>
+                    <span class="metric-label">Extreme Value Theory with Hierarchical Modeling</span>
+                </div>
+                <div class="metric-card">
+                    <span class="metric-value">Real-Time</span>
+                    <span class="metric-label">Proactive Safety Assessment Before Crashes</span>
+                </div>
+                <div class="metric-card">
+                    <span class="metric-value">Transferable</span>
+                    <span class="metric-label">Cross-Location Model Portability</span>
+                </div>
+            </div>
+
+            <a href="#framework" class="hero-cta">
+                Explore the Research
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 5v14M5 12l7 7 7-7" />
+                </svg>
+            </a>
+        </div>
+    </section>
+
+    <!-- Framework Infographic -->
+    <section id="framework" class="section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">The Framework</span>
+                <h2 class="section-title">From Sensor Data to Safety Scores</h2>
+                <p class="section-description">A sophisticated pipeline transforming raw autonomous vehicle sensor data
+                    into actionable real-time safety assessments.</p>
+            </div>
+            <div class="framework-image-container">
+                <img src="assets/framework.png"
+                    alt="AV Safety Framework: From sensor data through conflict detection and EVT modeling to real-time safety assessment"
+                    class="framework-image">
+            </div>
+        </div>
+    </section>
+
+    <!-- Problem Statement -->
+    <section id="problem" class="section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">The Challenge</span>
+                <h2 class="section-title">Why Traditional Methods Fall Short</h2>
+            </div>
+
+            <div class="problem-grid">
+                <div class="problem-card glass-panel">
+                    <div class="problem-icon">🚨</div>
+                    <h3>Crash Data Scarcity</h3>
+                    <p>Traditional safety relies on historical crashes—but crashes are rare and reactive.</p>
+                </div>
+                <div class="problem-card glass-panel">
+                    <div class="problem-icon">⏱️</div>
+                    <h3>Real-Time Requirements</h3>
+                    <p>AV systems need instant safety decisions, not post-hoc analysis.</p>
+                </div>
+                <div class="problem-card glass-panel">
+                    <div class="problem-icon">📈</div>
+                    <h3>Modeling Extremes</h3>
+                    <p>Safety is about predicting rare severe events—not averages.</p>
+                </div>
+                <div class="problem-card glass-panel">
+                    <div class="problem-icon">🗺️</div>
+                    <h3>Transferability Gap</h3>
+                    <p>Models trained in one city often fail elsewhere due to different traffic patterns.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Methodology -->
+    <section id="methodology" class="section section-alt">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">The Approach</span>
+                <h2 class="section-title">EVT-Based Safety Assessment Pipeline</h2>
+            </div>
+
+            <div class="methodology-flow">
+                <div class="flow-step glass-panel">
+                    <div class="step-number">1</div>
+                    <h3>AV Data Ingestion</h3>
+                    <p>Sensor data from autonomous vehicles: LiDAR, camera, trajectory information</p>
+                </div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step glass-panel">
+                    <div class="step-number">2</div>
+                    <h3>Conflict Extraction</h3>
+                    <p>Calculate traffic conflict indicators: Time-to-Collision (TTC), Post-Encroachment Time (PET)</p>
+                </div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step glass-panel">
+                    <div class="step-number">3</div>
+                    <h3>Block Maxima Aggregation</h3>
+                    <p>Group conflicts into temporal blocks to identify maximum severity events</p>
+                </div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step glass-panel">
+                    <div class="step-number">4</div>
+                    <h3>Bayesian EVT Model</h3>
+                    <p>Hierarchical spatial model with GEV distribution for extreme value prediction</p>
+                </div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step glass-panel">
+                    <div class="step-number">5</div>
+                    <h3>Real-Time Safety Score</h3>
+                    <p>Generate probabilistic safety assessments with uncertainty quantification</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technical Deep Dive -->
+    <section id="technical" class="section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Under the Hood</span>
+                <h2 class="section-title">Technical Deep Dive</h2>
+            </div>
+
+            <div class="carousel-wrapper">
+                <button class="carousel-nav prev" data-carousel="tech-carousel">←</button>
+                <div class="carousel" id="tech-carousel">
+                    <div class="carousel-item">
+                        <div class="tech-card glass-panel">
+                            <div class="tech-icon">📊</div>
+                            <h3>Extreme Value Theory (EVT)</h3>
+                            <p><strong>Why EVT for Safety?</strong> Standard statistics model averages (normal
+                                distribution), but safety is about predicting rare, severe events. EVT specifically
+                                models the tail of distributions using the <strong>Generalized Extreme Value (GEV)
+                                    distribution</strong>.</p>
+                            <div class="tech-tags">
+                                <span class="tag">GEV Distribution</span>
+                                <span class="tag">Block Maxima</span>
+                                <span class="tag">Tail Behavior</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="tech-card glass-panel">
+                            <div class="tech-icon">🧠</div>
+                            <h3>Bayesian Hierarchical Model</h3>
+                            <p><strong>Three-level structure:</strong> (1) Data level—GEV distribution for block
+                                maxima; (2) Process level—spatial random parameters capturing location-specific effects;
+                                (3) Prior level—weakly informative priors for robust inference.</p>
+                            <div class="tech-tags">
+                                <span class="tag">Hierarchical Bayes</span>
+                                <span class="tag">Spatial Random Effects</span>
+                                <span class="tag">MCMC/Stan</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="tech-card glass-panel">
+                            <div class="tech-icon">🚗</div>
+                            <h3>Traffic Conflict Indicators</h3>
+                            <p><strong>TTC (Time-to-Collision):</strong> Time until collision if trajectories continue
+                                unchanged. <strong>PET (Post-Encroachment Time):</strong> Temporal gap between vehicles
+                                at conflict zone. Extracted from AV sensor data to measure near-miss severity.</p>
+                            <div class="tech-tags">
+                                <span class="tag">TTC</span>
+                                <span class="tag">PET</span>
+                                <span class="tag">Conflict-Based</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="tech-card glass-panel">
+                            <div class="tech-icon">⚙️</div>
+                            <h3>Model Inference & Validation</h3>
+                            <p><strong>MCMC sampling</strong> via Stan/PyMC with rigorous convergence diagnostics
+                                (R-hat, ESS). Model validation using <strong>WAIC</strong>, posterior predictive checks,
+                                and cross-validation for robust performance.</p>
+                            <div class="tech-tags">
+                                <span class="tag">MCMC</span>
+                                <span class="tag">Convergence Diagnostics</span>
+                                <span class="tag">Model Validation</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel-nav next" data-carousel="tech-carousel">→</button>
+            </div>
+            <div class="carousel-dots" data-carousel="tech-carousel">
+                <button class="carousel-dot active" data-index="0"></button>
+                <button class="carousel-dot" data-index="1"></button>
+                <button class="carousel-dot" data-index="2"></button>
+                <button class="carousel-dot" data-index="3"></button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Key Innovation -->
+    <section id="innovation" class="section section-alt">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Key Innovation</span>
+                <h2 class="section-title">Why This Approach Matters</h2>
+            </div>
+
+            <div class="carousel-wrapper">
+                <button class="carousel-nav prev" data-carousel="innovation-carousel">←</button>
+                <div class="carousel" id="innovation-carousel">
+                    <div class="carousel-item">
+                        <div class="glass-panel" style="padding: 30px; text-align: center;">
+                            <h3 style="margin-bottom: 16px;">Proactive vs. Reactive Safety</h3>
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; text-align: left;">
+                                <div>
+                                    <p><strong>❌ Traditional Crash-Based:</strong> Wait for crashes to occur, then
+                                        analyze patterns. Reactive and limited by rare events.</p>
+                                </div>
+                                <div>
+                                    <p><strong>✓ Conflict-Based EVT:</strong> Analyze near-miss events in real-time.
+                                        Proactive prediction before crashes happen.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="glass-panel" style="padding: 30px; text-align: center;">
+                            <h3 style="margin-bottom: 16px;">Modeling the Tail, Not the Average</h3>
+                            <p style="color: var(--text-secondary); max-width: 600px; margin: 0 auto 20px;">Safety
+                                isn't about average conditions—it's about the worst-case scenarios. EVT's GEV
+                                distribution specializes in modeling extreme tail behavior where crashes occur.</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="glass-panel" style="padding: 30px; text-align: center;">
+                            <h3 style="margin-bottom: 16px;">Spatial Random Parameters</h3>
+                            <p style="color: var(--text-secondary); max-width: 600px; margin: 0 auto;">Hierarchical
+                                structure captures location-specific safety patterns while borrowing strength across
+                                sites—more robust than independent site models.</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="glass-panel" style="padding: 30px; text-align: center;">
+                            <h3 style="margin-bottom: 16px;">Model Transferability</h3>
+                            <p style="color: var(--text-secondary); max-width: 600px; margin: 0 auto 20px;">Developed
+                                <strong>informed prior</strong> and <strong>recalibration</strong> approaches to
+                                transfer models across locations—addressing data scarcity in new cities.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel-nav next" data-carousel="innovation-carousel">→</button>
+            </div>
+            <div class="carousel-dots" data-carousel="innovation-carousel">
+                <button class="carousel-dot active" data-index="0"></button>
+                <button class="carousel-dot" data-index="1"></button>
+                <button class="carousel-dot" data-index="2"></button>
+                <button class="carousel-dot" data-index="3"></button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Challenges & Solutions -->
+    <section id="challenges" class="section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Problem Solving</span>
+                <h2 class="section-title">Challenges & Solutions</h2>
+            </div>
+
+            <div class="carousel-wrapper">
+                <button class="carousel-nav prev" data-carousel="challenges-carousel">←</button>
+                <div class="carousel" id="challenges-carousel">
+                    <div class="carousel-item">
+                        <div class="challenge-card glass-panel">
+                            <div class="challenge-problem">
+                                <span class="label">Challenge</span>
+                                <h3>Massive Data Volume</h3>
+                                <p>AV sensors generate millions of data points per corridor—computationally intractable
+                                    for direct modeling.</p>
+                            </div>
+                            <div class="challenge-arrow">→</div>
+                            <div class="challenge-solution">
+                                <span class="label solution-label">Solution</span>
+                                <h3>Block Maxima Aggregation</h3>
+                                <p>Group conflicts into temporal blocks, extract maximum severity—<strong>reduces
+                                        dimensionality</strong> while preserving extreme value information.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="challenge-card glass-panel">
+                            <div class="challenge-problem">
+                                <span class="label">Challenge</span>
+                                <h3>Real-Time Constraints</h3>
+                                <p>AV systems require instant safety assessments for decision-making—no time for
+                                    retraining.</p>
+                            </div>
+                            <div class="challenge-arrow">→</div>
+                            <div class="challenge-solution">
+                                <span class="label solution-label">Solution</span>
+                                <h3>Pre-Trained Bayesian Model</h3>
+                                <p>Offline MCMC training with <strong>fast posterior inference</strong>—deploy
+                                    pre-trained model for real-time scoring.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="challenge-card glass-panel">
+                            <div class="challenge-problem">
+                                <span class="label">Challenge</span>
+                                <h3>Cross-Location Performance</h3>
+                                <p>Models trained in City A often fail in City B due to different traffic patterns and
+                                    infrastructure.</p>
+                            </div>
+                            <div class="challenge-arrow">→</div>
+                            <div class="challenge-solution">
+                                <span class="label solution-label">Solution</span>
+                                <h3>Transferability Framework</h3>
+                                <p><strong>Informed priors</strong> from source location + efficient
+                                    <strong>recalibration</strong> with limited target data.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="challenge-card glass-panel">
+                            <div class="challenge-problem">
+                                <span class="label">Challenge</span>
+                                <h3>Statistical Validation</h3>
+                                <p>Bayesian models require rigorous convergence diagnostics and validation—no ground
+                                    truth for crashes.</p>
+                            </div>
+                            <div class="challenge-arrow">→</div>
+                            <div class="challenge-solution">
+                                <span class="label solution-label">Solution</span>
+                                <h3>Multi-Metric Validation</h3>
+                                <p>R-hat, ESS, WAIC, <strong>posterior predictive checks</strong>, and cross-validation
+                                    for comprehensive model assessment.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel-nav next" data-carousel="challenges-carousel">→</button>
+            </div>
+            <div class="carousel-dots" data-carousel="challenges-carousel">
+                <button class="carousel-dot active" data-index="0"></button>
+                <button class="carousel-dot" data-index="1"></button>
+                <button class="carousel-dot" data-index="2"></button>
+                <button class="carousel-dot" data-index="3"></button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills -->
+    <section id="skills" class="section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Expertise</span>
+                <h2 class="section-title">Skills Demonstrated</h2>
+            </div>
+
+            <div class="skills-grid">
+                <div class="skill-category glass-panel">
+                    <h3>Statistical Modeling</h3>
+                    <div class="skill-items">
+                        <span class="skill-badge">Bayesian Inference</span>
+                        <span class="skill-badge">Extreme Value Theory</span>
+                        <span class="skill-badge">MCMC</span>
+                        <span class="skill-badge">GEV Distribution</span>
+                        <span class="skill-badge">Hierarchical Models</span>
+                    </div>
+                </div>
+
+                <div class="skill-category glass-panel">
+                    <h3>Programming</h3>
+                    <div class="skill-items">
+                        <span class="skill-badge">Python</span>
+                        <span class="skill-badge">R</span>
+                        <span class="skill-badge">Stan</span>
+                        <span class="skill-badge">PyMC</span>
+                        <span class="skill-badge">NumPy/Pandas</span>
+                    </div>
+                </div>
+
+                <div class="skill-category glass-panel">
+                    <h3>AV Technology</h3>
+                    <div class="skill-items">
+                        <span class="skill-badge">Sensor Data Processing</span>
+                        <span class="skill-badge">Trajectory Analysis</span>
+                        <span class="skill-badge">Conflict Detection</span>
+                        <span class="skill-badge">Real-Time Systems</span>
+                    </div>
+                </div>
+
+                <div class="skill-category glass-panel">
+                    <h3>Data Engineering</h3>
+                    <div class="skill-items">
+                        <span class="skill-badge">Large-Scale Processing</span>
+                        <span class="skill-badge">Data Pipelines</span>
+                        <span class="skill-badge">Time-Series Analysis</span>
+                    </div>
+                </div>
+
+                <div class="skill-category glass-panel">
+                    <h3>Domain Expertise</h3>
+                    <div class="skill-items">
+                        <span class="skill-badge">Traffic Safety</span>
+                        <span class="skill-badge">Conflict Analysis</span>
+                        <span class="skill-badge">Risk Assessment</span>
+                        <span class="skill-badge">Transportation Engineering</span>
+                    </div>
+                </div>
+
+                <div class="skill-category glass-panel">
+                    <h3>Research Methods</h3>
+                    <div class="skill-items">
+                        <span class="skill-badge">Model Validation</span>
+                        <span class="skill-badge">Cross-Validation</span>
+                        <span class="skill-badge">Sensitivity Analysis</span>
+                        <span class="skill-badge">Academic Writing</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <section id="footer" class="section section-alt">
+        <div class="container" style="text-align: center;">
+            <div class="section-header">
+                <span class="section-tag">Summary</span>
+                <h2 class="section-title">Key Takeaway</h2>
+            </div>
+
+            <p
+                style="font-size: 1.3rem; color: var(--text-secondary); max-width: 800px; margin: 0 auto 40px; line-height: 1.6;">
+                This research demonstrates how <strong>Extreme Value Theory</strong> combined with
+                <strong>Bayesian hierarchical modeling</strong> can transform autonomous vehicle sensor data into
+                proactive, real-time safety assessments—predicting dangerous conditions before crashes occur.
+            </p>
+
+            <!-- Action Links -->
+            <div style="display: flex; justify-content: center; gap: 24px; flex-wrap: wrap; margin-bottom: 40px;">
+                <a href="#" class="hero-cta" style="opacity: 0.6; cursor: not-allowed;">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                        <polyline points="14 2 14 8 20 8" />
+                        <line x1="16" y1="13" x2="8" y2="13" />
+                        <line x1="16" y1="17" x2="8" y2="17" />
+                    </svg>
+                    Resume (Coming Soon)
+                </a>
+                <a href="https://www.linkedin.com/in/akamel01/" target="_blank" rel="noopener" class="hero-cta"
+                    style="background: #0077b5;">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path
+                            d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+                    </svg>
+                    LinkedIn Profile
+                </a>
+            </div>
+
+            <!-- Copyright -->
+            <p style="font-size: 0.85rem; color: var(--text-muted);">
+                © 2024 Ahmed Kamel. Built with passion for data science and road safety.
+            </p>
+        </div>
+    </section>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+</body>
+
+</html>
