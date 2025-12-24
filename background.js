@@ -1,6 +1,7 @@
 /**
  * Interactive Particle Network - "Swimming in Water" Edition
- * Particles flow organically, clicks create expanding ripples that push particles.
+ * Particles flow organically, clicks create ripples + spawn new particles,
+ * and a gentle "magnet" pulls particles back toward center.
  */
 
 class ParticleNetwork {
@@ -14,9 +15,12 @@ class ParticleNetwork {
 
         this.config = {
             particleCount: window.innerWidth < 768 ? 60 : 120,
+            maxParticles: window.innerWidth < 768 ? 100 : 200, // Cap to prevent performance issues
             connectionRadius: 150,
             rippleSpeed: 8,
             rippleForce: 15,
+            spawnPerClick: 5, // New particles spawned on click
+            magnetStrength: 0.0008, // Gentle pull toward original position
             colors: ['#00d9ff', '#a855f7', '#22d3ee', '#10b981']
         };
 
@@ -24,7 +28,6 @@ class ParticleNetwork {
     }
 
     init() {
-        // Canvas setup - IMPORTANT: must receive pointer events
         this.canvas.style.cssText = `
             position: absolute;
             top: 0;
@@ -36,11 +39,10 @@ class ParticleNetwork {
         `;
         this.container.appendChild(this.canvas);
 
-        // Resize
         this.resize();
         window.addEventListener('resize', () => this.resize());
 
-        // Mouse tracking on CANVAS directly
+        // Mouse tracking
         this.canvas.addEventListener('mousemove', (e) => {
             const rect = this.canvas.getBoundingClientRect();
             this.mouse.x = e.clientX - rect.left;
@@ -52,13 +54,15 @@ class ParticleNetwork {
             this.mouse.y = null;
         });
 
-        // CLICK creates ripple
+        // Click creates ripple + spawns new particles
         this.canvas.addEventListener('click', (e) => {
             const rect = this.canvas.getBoundingClientRect();
-            this.createRipple(e.clientX - rect.left, e.clientY - rect.top);
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            this.createRipple(x, y);
+            this.spawnParticles(x, y);
         });
 
-        // Create particles and start
         this.createParticles();
         this.animate();
     }
@@ -68,21 +72,50 @@ class ParticleNetwork {
         this.height = this.container.offsetHeight;
         this.canvas.width = this.width;
         this.canvas.height = this.height;
+        this.centerX = this.width / 2;
+        this.centerY = this.height / 2;
     }
 
     createParticles() {
         for (let i = 0; i < this.config.particleCount; i++) {
-            this.particles.push({
-                x: Math.random() * this.width,
-                y: Math.random() * this.height,
-                vx: 0,
-                vy: 0,
-                baseX: Math.random() * this.width,
-                baseY: Math.random() * this.height,
-                size: Math.random() * 2 + 1.5,
-                color: this.config.colors[Math.floor(Math.random() * this.config.colors.length)],
-                phase: Math.random() * Math.PI * 2
-            });
+            const x = Math.random() * this.width;
+            const y = Math.random() * this.height;
+            this.particles.push(this.createParticle(x, y));
+        }
+    }
+
+    createParticle(x, y) {
+        return {
+            x: x,
+            y: y,
+            vx: 0,
+            vy: 0,
+            homeX: x, // Original position for magnet effect
+            homeY: y,
+            size: Math.random() * 2 + 1.5,
+            color: this.config.colors[Math.floor(Math.random() * this.config.colors.length)],
+            phase: Math.random() * Math.PI * 2
+        };
+    }
+
+    spawnParticles(clickX, clickY) {
+        // Remove excess particles if we're over the cap
+        while (this.particles.length > this.config.maxParticles - this.config.spawnPerClick) {
+            this.particles.shift(); // Remove oldest particle
+        }
+
+        // Spawn new particles at click position (they'll burst outward from ripple)
+        for (let i = 0; i < this.config.spawnPerClick; i++) {
+            const angle = (Math.PI * 2 / this.config.spawnPerClick) * i + Math.random() * 0.5;
+            const dist = 20 + Math.random() * 30;
+            const x = clickX + Math.cos(angle) * dist;
+            const y = clickY + Math.sin(angle) * dist;
+
+            const particle = this.createParticle(x, y);
+            // Set home position to somewhere near center so they drift inward
+            particle.homeX = this.centerX + (Math.random() - 0.5) * this.width * 0.6;
+            particle.homeY = this.centerY + (Math.random() - 0.5) * this.height * 0.6;
+            this.particles.push(particle);
         }
     }
 
@@ -100,17 +133,20 @@ class ParticleNetwork {
     update() {
         const time = Date.now() * 0.001;
 
-        // Update particles - "swimming" motion
         this.particles.forEach(p => {
-            // Gentle organic drift (like floating in water)
+            // Organic swimming drift
             const driftX = Math.sin(time * 0.5 + p.phase) * 0.3;
             const driftY = Math.cos(time * 0.3 + p.phase * 1.5) * 0.3;
-
-            // Apply drift
             p.vx += driftX * 0.02;
             p.vy += driftY * 0.02;
 
-            // Mouse interaction - gentle push away
+            // MAGNET: Gentle pull toward home position
+            const homeDistX = p.homeX - p.x;
+            const homeDistY = p.homeY - p.y;
+            p.vx += homeDistX * this.config.magnetStrength;
+            p.vy += homeDistY * this.config.magnetStrength;
+
+            // Mouse repulsion
             if (this.mouse.x !== null) {
                 const dx = p.x - this.mouse.x;
                 const dy = p.y - this.mouse.y;
@@ -123,13 +159,12 @@ class ParticleNetwork {
                 }
             }
 
-            // Ripple interaction - push particles outward
+            // Ripple push
             this.ripples.forEach(r => {
                 const dx = p.x - r.x;
                 const dy = p.y - r.y;
                 const dist = Math.sqrt(dx * dx + dy * dy);
 
-                // Particles within the ripple wavefront get pushed
                 const waveFront = r.radius;
                 const waveWidth = 50;
 
@@ -144,15 +179,15 @@ class ParticleNetwork {
             p.x += p.vx;
             p.y += p.vy;
 
-            // Friction (water resistance)
+            // Friction
             p.vx *= 0.96;
             p.vy *= 0.96;
 
-            // Soft boundaries - wrap around
-            if (p.x < -20) p.x = this.width + 20;
-            if (p.x > this.width + 20) p.x = -20;
-            if (p.y < -20) p.y = this.height + 20;
-            if (p.y > this.height + 20) p.y = -20;
+            // Soft wrap around edges
+            if (p.x < -50) p.x = this.width + 50;
+            if (p.x > this.width + 50) p.x = -50;
+            if (p.y < -50) p.y = this.height + 50;
+            if (p.y > this.height + 50) p.y = -50;
         });
 
         // Update ripples
@@ -166,9 +201,8 @@ class ParticleNetwork {
     draw() {
         this.ctx.clearRect(0, 0, this.width, this.height);
 
-        // Draw ripples (water rings)
+        // Draw ripples
         this.ripples.forEach(r => {
-            // Multiple rings for water effect
             for (let i = 0; i < 3; i++) {
                 const ringRadius = r.radius - i * 15;
                 if (ringRadius > 0) {
@@ -181,7 +215,7 @@ class ParticleNetwork {
             }
         });
 
-        // Draw connections first (behind particles)
+        // Draw connections
         this.particles.forEach((p, i) => {
             for (let j = i + 1; j < this.particles.length; j++) {
                 const q = this.particles[j];
@@ -201,9 +235,9 @@ class ParticleNetwork {
             }
         });
 
-        // Draw particles with glow
+        // Draw particles
         this.particles.forEach(p => {
-            // Outer glow
+            // Glow
             const gradient = this.ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.size * 4);
             gradient.addColorStop(0, p.color);
             gradient.addColorStop(1, 'transparent');
@@ -214,7 +248,7 @@ class ParticleNetwork {
             this.ctx.globalAlpha = 0.15;
             this.ctx.fill();
 
-            // Core particle
+            // Core
             this.ctx.beginPath();
             this.ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
             this.ctx.fillStyle = p.color;
@@ -224,7 +258,7 @@ class ParticleNetwork {
             this.ctx.globalAlpha = 1;
         });
 
-        // Draw mouse glow if present
+        // Mouse glow
         if (this.mouse.x !== null) {
             const mouseGradient = this.ctx.createRadialGradient(
                 this.mouse.x, this.mouse.y, 0,
