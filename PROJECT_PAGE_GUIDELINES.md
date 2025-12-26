@@ -24,7 +24,7 @@
 ### Primary Audience
 - **Technical Recruiters**: Need quick understanding of skills and impact
 - **Hiring Managers**: Want to assess problem-solving ability and technical depth
-- **Data Science Teams**: Looking for evidence of rigorous methodology
+- **Engineering Teams**: Looking for evidence of rigorous methodology and system-building
 - **Non-Technical Stakeholders**: Should understand the business value
 
 ### Core Messages to Convey
@@ -33,6 +33,7 @@
 |---------|-------------------|
 | **Technical Competence** | Show specific technologies, algorithms, and methodologies used |
 | **Problem-Solving Ability** | Include Challenges → Solutions section |
+| **System-Building** | Emphasize end-to-end pipelines, production-ready tools, deployable solutions |
 | **Business Impact** | Lead with quantifiable metrics ($$, %, time saved) |
 | **Attention to Detail** | Professional design, no typos, polished visualizations |
 | **Communication Skills** | Clear explanations, interactive dashboards, visual storytelling |
@@ -40,6 +41,7 @@
 ### Tone & Voice
 - **Professional but approachable**: Not overly academic
 - **Confident without arrogance**: Let results speak for themselves
+- **Research Engineer framing**: Emphasize novel methods, system design, and production deployment
 - **Concise**: Recruiters scan quickly—lead with impact
 - **Visual-first**: Show, don't just tell
 
@@ -166,7 +168,7 @@ A project page should include these sections in order. Each section is a full-vi
 
 | Element | Content |
 |---------|---------|
-| Badge | Category tag (e.g., "Machine Learning", "Data Engineering") |
+| Badge | Category tag: **"Research Engineering"** (preferred) or domain-specific |
 | Title | Project name with gradient styling on key words |
 | Subtitle | 1-2 sentence description of what the project does |
 | Key Metrics | 2-3 cards with headline numbers (use emojis or icons) |
@@ -338,13 +340,20 @@ A project page should include these sections in order. Each section is a full-vi
 **Skill Category Format**:
 ```html
 <div class="skill-category glass-panel">
-    <h3>Category Name</h3>
+    <h3>Category Name</h3>  <!-- e.g., "Quantitative Methods", "High-Performance Computing", "Languages & Tools" -->
     <div class="skill-items">
         <span class="skill-badge">Skill 1</span>
         <span class="skill-badge">Skill 2</span>
     </div>
 </div>
 ```
+
+**Recommended Skill Category Names (Research Engineer Branding):**
+- "Quantitative Methods" (not "Data Science")
+- "High-Performance Computing" (not "GPU Computing")
+- "Languages & Tools" (not "Programming")
+- "Systems & Deployment" or "Real-Time Systems"
+- "Domain Expertise"
 
 ### 11. Footer/Summary Section
 **Purpose**: Key takeaway and links

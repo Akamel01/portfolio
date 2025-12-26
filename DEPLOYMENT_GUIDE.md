@@ -94,7 +94,7 @@ Once you have set up **Method 2**, updating your website is simple. You never ne
 
     ```bash
     git add .
-    git commit -m "Describe your changes here"
+    git commit -m "Background.js updated"
     git push
     ```
 
