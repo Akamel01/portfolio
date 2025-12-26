@@ -161,7 +161,7 @@ All cards and panels use this base style:
 
 ## Page Sections Reference
 
-A project page should include these sections in order. Each section is a full-viewport "slide" with scroll-snap.
+A project page should include these sections in order. Pages use **natural scrolling** (no scroll-snap) for a smooth browsing experience.
 
 ### 1. Hero Section
 **Purpose**: Immediate impact, establish project identity
@@ -205,7 +205,7 @@ A project page should include these sections in order. Each section is a full-vi
 |---------|---------|
 | Tag | "The Challenge" |
 | Title | "Why This Matters" |
-| Cards | 3-4 problem cards in grid layout |
+| Cards | 2-4 problem cards in **2-column grid layout** |
 
 **Problem Card Format**:
 ```html
@@ -242,7 +242,7 @@ A project page should include these sections in order. Each section is a full-vi
 |---------|---------|
 | Tag | "Under the Hood" |
 | Title | "Technical Deep Dive" |
-| Carousel | 3-5 cards with detailed technical info |
+| Grid | 2-6 cards in **2-column grid** (no horizontal carousel) |
 
 **Technical Card Format**:
 ```html
@@ -264,7 +264,7 @@ A project page should include these sections in order. Each section is a full-vi
 |---------|---------|
 | Tag | "Key Innovation" |
 | Title | Specific innovation name |
-| Carousel | Before/after comparisons, visualizations |
+| Grid | Before/after comparisons in **2-column grid** |
 
 ### 7. Challenges & Solutions Section (Carousel)
 **Purpose**: Demonstrate problem-solving ability
@@ -273,9 +273,9 @@ A project page should include these sections in order. Each section is a full-vi
 |---------|---------|
 | Tag | "Problem Solving" |
 | Title | "Challenges & Solutions" |
-| Carousel | 3-5 challenge → solution pairs |
+| Grid | 2-5 challenge → solution pairs in **2-column grid** |
 
-**Challenge Card Format**:
+**Challenge Card Format** (horizontal layout with Problem → Solution side-by-side):
 ```html
 <div class="challenge-card glass-panel">
     <div class="challenge-problem">
@@ -292,6 +292,8 @@ A project page should include these sections in order. Each section is a full-vi
 </div>
 ```
 
+> **Note**: The `.challenge-card` uses `grid-template-columns: 1fr auto 1fr` with `align-items: stretch` to ensure Challenge and Solution are at the same horizontal level.
+
 ### 8. Results Section
 **Purpose**: Showcase outcomes with proof
 
@@ -299,8 +301,8 @@ A project page should include these sections in order. Each section is a full-vi
 |---------|---------|
 | Tag | "Outcomes" |
 | Title | "Results & Impact" |
-| Metrics | 3 result cards with icons and numbers |
-| Gallery | Carousel of result visualizations |
+| Metrics | 3 result cards with icons and numbers (**3-column grid**) |
+| Gallery | **2-column grid** of result visualizations (no carousel) |
 
 **Result Metric Format**:
 ```html
@@ -434,7 +436,7 @@ Use this as a starting point for new project pages:
 
 | Class | Purpose |
 |-------|---------|
-| `.section` | Full-viewport section with scroll-snap |
+| `.section` | Section container with natural scrolling (no snap) |
 | `.section-alt` | Alternate background color for contrast |
 | `.container` | Centered content container (max-width 1200px) |
 | `.glass-panel` | Glassmorphism card effect |
@@ -442,8 +444,13 @@ Use this as a starting point for new project pages:
 | `.section-tag` | Small uppercase label above title |
 | `.section-title` | Main section heading |
 | `.gradient-text` | Cyan-to-purple gradient text |
-| `.carousel` | Horizontal scrolling carousel |
-| `.carousel-item` | Individual carousel slide |
+| `.carousel` | **2-column grid** layout for content items |
+| `.carousel-item` | Individual grid item |
+| `.problem-grid` | **2-column grid** for problem cards |
+| `.tech-grid` | **2-column grid** for technical cards |
+| `.challenges-grid` | Vertical list of challenge cards |
+| `.results-metrics` | **3-column grid** for result metrics |
+| `.lightbox-overlay` | Full-screen image overlay (auto-attached via JS) |
 
 ### Copy the style.css from rlc-optimizer
 The RLC Optimizer project has the complete CSS file. Copy it for new projects and modify as needed.
@@ -454,11 +461,21 @@ The RLC Optimizer project has the complete CSS file. Copy it for new projects an
 
 ### Required Features
 
-1. **Scroll Snapping**: Keyboard navigation (↑/↓ arrows)
-2. **Carousel Controls**: Prev/next buttons, dots, keyboard (←/→)
-3. **Section Navigation Dots**: Right-side dot indicators
+1. **Natural Scrolling**: Smooth scrolling without snap (scroll-snap is disabled)
+2. **Section Navigation Dots**: Right-side dot indicators for visual reference
+3. **Lightbox**: Click any image to view full-screen (ESC or click to close)
 4. **Intersection Observer**: Reveal animations on scroll
 5. **Smooth Scrolling**: For navigation links
+
+### Lightbox Functionality
+
+The script automatically attaches click handlers to these image classes:
+- `.framework-image`
+- `.gallery-item img`
+- `.carousel-item img`
+- `img[data-lightbox]`
+
+Clicking any of these images opens a full-screen overlay. Press **ESC** or click outside to close.
 
 ### Copy script.js from rlc-optimizer
 The existing script.js handles all functionality. Copy and adjust selectors as needed.
@@ -522,6 +539,18 @@ Use emojis sparingly for visual interest in cards:
 - **Dependencies**: Inline or CDN-linked
 - **Theme**: Dark to match portfolio
 
+### Image Responsiveness
+
+All images are designed to be responsive and adapt to different sizes and aspect ratios:
+
+| Image Class | Max Height | Object Fit |
+|-------------|------------|------------|
+| `.framework-image` | 70vh | contain |
+| `.gallery-item img` | 400px | contain |
+| `.carousel-item img` | auto | contain |
+
+**To replace an image**: Simply swap the file in `assets/` with the new image. The CSS will automatically handle different aspect ratios without distortion.
+
 ---
 
 ## Quality Checklist
@@ -539,15 +568,17 @@ Before publishing a new project page, verify:
 - [ ] All images load correctly
 - [ ] Images are not cropped unexpectedly
 - [ ] Dark theme is consistent throughout
-- [ ] Carousels scroll smoothly
+- [ ] Sections scroll naturally (no jarring snaps)
 - [ ] Section navigation dots work
-- [ ] Keyboard navigation works (↑/↓/←/→)
+- [ ] **Lightbox works** (click any image to view full-screen)
+- [ ] Content grids display in 2 columns
 
 ### Technical
 - [ ] No console errors
 - [ ] Responsive on mobile (768px breakpoint)
 - [ ] Fast load time (optimize images)
 - [ ] Back to portfolio link works
+- [ ] Images work at different aspect ratios
 
 ### Integration
 - [ ] Project card added to landing page `index.html`
@@ -621,3 +652,14 @@ For questions about these guidelines:
 ---
 
 *Last Updated: December 2024*
+
+---
+
+## Changelog
+
+### December 2024 Updates
+- **Removed scroll-snap**: Pages now use natural scrolling
+- **Changed to 2-column grids**: Problem, Technical, Innovation, and Challenges sections use 2-column layouts
+- **Added lightbox**: All images are clickable and open in full-screen view
+- **Horizontal challenge/solution**: Challenge cards show Problem → Solution side-by-side
+- **Responsive images**: Images handle any aspect ratio with `object-fit: contain`

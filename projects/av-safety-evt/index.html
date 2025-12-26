@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Real-Time AV Safety Assessment | Portfolio | Ahmed Kamel</title>
     <meta name="description"
-        content="Bayesian Extreme Value Theory model for predicting crash risk from autonomous vehicle sensor data in real-time, with cross-location transferability.">
+        content="Bayesian Extreme Value Theory model for predicting crash risk from autonomous vehicle sensor data in real-time, with cross-context transferability.">
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -72,7 +72,7 @@
                 </div>
                 <div class="metric-card">
                     <span class="metric-value">Transferable</span>
-                    <span class="metric-label">Cross-Location Model Portability</span>
+                    <span class="metric-label">Cross-Context Model Portability</span>
                 </div>
             </div>
 
@@ -98,6 +98,56 @@
                 <img src="assets/framework.png"
                     alt="AV Safety Framework: From sensor data through conflict detection and EVT modeling to real-time safety assessment"
                     class="framework-image">
+            </div>
+
+            <!-- Trajectory Data Animation -->
+            <div class="trajectory-video-container" style="margin-top: 48px;">
+                <h3 style="color: var(--text-primary); text-align: center; margin-bottom: 16px; font-size: 1.4rem;">
+                    📡 Real-World Data Collection
+                </h3>
+                <p
+                    style="color: var(--text-secondary); text-align: center; max-width: 700px; margin: 0 auto 24px; line-height: 1.6;">
+                    Animated visualization of trajectory data captured by an autonomous vehicle fleet at a fixed
+                    intersection—the raw input driving our safety models.
+                </p>
+                <div
+                    style="display: flex; gap: 24px; align-items: flex-start; flex-wrap: wrap; justify-content: center;">
+                    <!-- Video Container -->
+                    <div class="glass-panel"
+                        style="overflow: hidden; border-radius: 16px; flex: 1; min-width: 300px; max-width: 800px;">
+                        <video autoplay loop muted playsinline style="width: 100%; height: auto; display: block;">
+                            <source src="assets/trajectories.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+
+                    <!-- Legend -->
+                    <div class="glass-panel" style="padding: 24px; border-radius: 16px; min-width: 180px;">
+                        <h4
+                            style="color: var(--text-primary); margin-bottom: 16px; font-size: 1rem; text-align: center;">
+                            🎨 Trajectory Legend
+                        </h4>
+                        <div style="display: flex; flex-direction: column; gap: 12px;">
+                            <div style="display: flex; align-items: center; gap: 12px;">
+                                <div style="width: 32px; height: 4px; background: #FFD700; border-radius: 2px;"></div>
+                                <span style="color: var(--text-secondary); font-size: 0.95rem;">Vehicles</span>
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 12px;">
+                                <div style="width: 32px; height: 4px; background: #FF8C00; border-radius: 2px;"></div>
+                                <span style="color: var(--text-secondary); font-size: 0.95rem;">Bikes</span>
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 12px;">
+                                <div style="width: 32px; height: 4px; background: #90EE90; border-radius: 2px;"></div>
+                                <span style="color: var(--text-secondary); font-size: 0.95rem;">Pedestrians</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <p
+                    style="color: var(--text-muted); text-align: center; font-size: 0.9rem; margin-top: 16px; font-style: italic;">
+                    Vehicle trajectories recorded from AV sensors at a signalized intersection, enabling conflict
+                    extraction and safety analysis.
+                </p>
             </div>
         </div>
     </section>
@@ -369,7 +419,7 @@
                         <div class="challenge-card glass-panel">
                             <div class="challenge-problem">
                                 <span class="label">Challenge</span>
-                                <h3>Cross-Location Performance</h3>
+                                <h3>Cross-Context Performance</h3>
                                 <p>Models trained in City A often fail in City B due to different traffic patterns and
                                     infrastructure.</p>
                             </div>
@@ -408,6 +458,108 @@
                 <button class="carousel-dot" data-index="1"></button>
                 <button class="carousel-dot" data-index="2"></button>
                 <button class="carousel-dot" data-index="3"></button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Results & Outcomes -->
+    <section id="results" class="section section-alt">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Outcomes</span>
+                <h2 class="section-title">Results & <span class="gradient-text">Impact</span></h2>
+            </div>
+
+            <!-- Key Metrics -->
+            <div class="results-metrics">
+                <div class="result-metric glass-panel">
+                    <span class="result-icon">📊</span>
+                    <div class="result-content">
+                        <span class="result-value">100K+</span>
+                        <span class="result-label">Traffic Conflicts Analyzed</span>
+                    </div>
+                </div>
+                <div class="result-metric glass-panel">
+                    <span class="result-icon">🔄</span>
+                    <div class="result-content">
+                        <span class="result-value">0.8–0.9</span>
+                        <span class="result-label">Transferability Index</span>
+                    </div>
+                </div>
+                <div class="result-metric glass-panel">
+                    <span class="result-icon">🏆</span>
+                    <div class="result-content">
+                        <span class="result-value">Bivariate POT</span>
+                        <span class="result-label">Best-Performing Model</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Key Findings -->
+            <h3 class="gallery-title">Key Findings</h3>
+            <div class="gallery-grid">
+                <div class="gallery-item glass-panel">
+                    <div style="padding: 24px;">
+                        <h4 style="color: var(--accent-primary); margin-bottom: 12px;">🌆 Multi-City Validation</h4>
+                        <p style="color: var(--text-secondary); margin-bottom: 12px;">
+                            Trained on <strong>68,000 conflicts from Los Angeles</strong> and validated on
+                            <strong>35,000 conflicts from San Francisco</strong>, demonstrating robust cross-context
+                            performance.
+                        </p>
+                        <div class="tech-tags">
+                            <span class="tag">LA Dataset</span>
+                            <span class="tag">SF Dataset</span>
+                            <span class="tag">Cross-Validation</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="gallery-item glass-panel">
+                    <div style="padding: 24px;">
+                        <h4 style="color: var(--accent-primary); margin-bottom: 12px;">⚡ Real-Time Capability</h4>
+                        <p style="color: var(--text-secondary); margin-bottom: 12px;">
+                            Bivariate POT model maintains <strong>lowest Mean Absolute Error (MAE)</strong> even at
+                            <strong>1-minute
+                                aggregation intervals</strong>,
+                            balancing bias-variance tradeoff gracefully.
+                        </p>
+                        <div class="tech-tags">
+                            <span class="tag">Low Latency</span>
+                            <span class="tag">Stable MAE</span>
+                            <span class="tag">Production-Ready</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="gallery-item glass-panel">
+                    <div style="padding: 24px;">
+                        <h4 style="color: var(--accent-primary); margin-bottom: 12px;">🔬 Bayesian Transfer Learning
+                        </h4>
+                        <p style="color: var(--text-secondary); margin-bottom: 12px;">
+                            <strong>Informed priors</strong> from source location enable accurate predictions in new
+                            cities
+                            with <strong>minimal local calibration data</strong>.
+                        </p>
+                        <div class="tech-tags">
+                            <span class="tag">Prior Transfer</span>
+                            <span class="tag">MCMC</span>
+                            <span class="tag">Recalibration</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="gallery-item glass-panel">
+                    <div style="padding: 24px;">
+                        <h4 style="color: var(--accent-primary); margin-bottom: 12px;">🚦 Safety-Mobility Insights</h4>
+                        <p style="color: var(--text-secondary); margin-bottom: 12px;">
+                            Identified critical relationships between <strong>Level of Service (LOS)</strong> and crash
+                            risk where LOS E is associated with highest crash risk, unlocking simplistic safety-oriented
+                            planning.
+                        </p>
+                        <div class="tech-tags">
+                            <span class="tag">LOS Analysis</span>
+                            <span class="tag">Signal Optimization</span>
+                            <span class="tag">Risk Index</span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -501,14 +653,14 @@
 
             <!-- Action Links -->
             <div style="display: flex; justify-content: center; gap: 24px; flex-wrap: wrap; margin-bottom: 40px;">
-                <a href="#" class="hero-cta" style="opacity: 0.6; cursor: not-allowed;">
+                <a href="../../assets/resume.pdf" target="_blank" rel="noopener" class="hero-cta">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
                         <polyline points="14 2 14 8 20 8" />
                         <line x1="16" y1="13" x2="8" y2="13" />
                         <line x1="16" y1="17" x2="8" y2="17" />
                     </svg>
-                    Resume (Coming Soon)
+                    Resume
                 </a>
                 <a href="https://www.linkedin.com/in/akamel01/" target="_blank" rel="noopener" class="hero-cta"
                     style="background: #0077b5;">

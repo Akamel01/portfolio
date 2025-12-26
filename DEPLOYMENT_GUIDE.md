@@ -99,3 +99,57 @@ Once you have set up **Method 2**, updating your website is simple. You never ne
     ```
 
 4.  **Wait 30 seconds**. Netlify detects the push and automatically rebuilds your site. Refresh your URL to see the changes!
+
+---
+
+## Project Pages: Features & Customization 📄
+
+### Layout Features
+
+The project pages have the following layout features:
+
+| Feature | Description |
+|---------|-------------|
+| **Natural Scrolling** | No scroll-snap; pages scroll smoothly and naturally |
+| **2-Column Layouts** | Challenge, Technical, Problem, and Innovation sections use 2-column grids |
+| **3-Column Metrics** | Outcome/Results metrics remain in 3 columns for visual impact |
+| **Horizontal Challenge/Solution** | Each challenge card shows Problem and Solution side-by-side |
+| **Clickable Images** | All images open in a full-screen lightbox when clicked |
+
+### Updating Images
+
+**Framework Infographics & Charts:**
+Images are designed to be responsive and will adapt to different sizes and aspect ratios automatically.
+
+1. Replace the image file in `portfolio/projects/[project-name]/assets/`
+2. Keep the same filename, or update the `src` attribute in `index.html`
+3. Images with any aspect ratio will display correctly with `object-fit: contain`
+
+**Image Classes (CSS):**
+- `.framework-image` - Main infographic images (max-height: 70vh)
+- `.gallery-item img` - Gallery/chart images (max-height: 400px)
+- `.carousel-item img` - Content grid images
+
+### Lightbox Functionality
+
+All images with these classes are automatically clickable:
+- Click any image → Opens full-screen overlay
+- Press **ESC** or click outside → Closes overlay
+- Works on desktop and mobile
+
+---
+
+## Branding: Research Engineer 🎯
+
+The portfolio is branded as a **Research Engineer** (not Data Scientist):
+
+- Hero description emphasizes "research-grade systems"
+- Skill categories: Quantitative Methods, Optimization, Machine Learning, Languages & Tools, Systems & Deployment
+- Project badges: "Research Engineering"
+- About section: PhD credential + 8+ years experience
+
+To change branding back to Data Scientist:
+1. Update `index.html` hero description
+2. Change skill category names
+3. Update project page badges
+

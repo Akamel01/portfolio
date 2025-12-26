@@ -254,5 +254,59 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    // -------------------------------------------------------------------------
+    // LIGHTBOX (Full-Screen Image Viewer)
+    // -------------------------------------------------------------------------
+    const createLightbox = () => {
+        // Create overlay
+        const overlay = document.createElement('div');
+        overlay.className = 'lightbox-overlay';
+        overlay.innerHTML = `
+            <button class="lightbox-close">&times;</button>
+            <img class="lightbox-image" src="" alt="Full size image">
+        `;
+        document.body.appendChild(overlay);
+
+        const lightboxImg = overlay.querySelector('.lightbox-image');
+        const closeBtn = overlay.querySelector('.lightbox-close');
+
+        // Open lightbox
+        const openLightbox = (src, alt) => {
+            lightboxImg.src = src;
+            lightboxImg.alt = alt || 'Full size image';
+            overlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        };
+
+        // Close lightbox
+        const closeLightbox = () => {
+            overlay.classList.remove('active');
+            document.body.style.overflow = '';
+        };
+
+        // Close handlers
+        closeBtn.addEventListener('click', closeLightbox);
+        overlay.addEventListener('click', (e) => {
+            if (e.target === overlay) closeLightbox();
+        });
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && overlay.classList.contains('active')) {
+                closeLightbox();
+            }
+        });
+
+        // Attach to all images
+        const clickableImages = document.querySelectorAll(
+            '.framework-image, .gallery-item img, .carousel-item img, img[data-lightbox]'
+        );
+        clickableImages.forEach(img => {
+            img.addEventListener('click', () => {
+                openLightbox(img.src, img.alt);
+            });
+        });
+    };
+
+    createLightbox();
+
     console.log('🚦 RLC Portfolio (Apple Keynote-Style) loaded!');
 });

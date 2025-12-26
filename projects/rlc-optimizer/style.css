@@ -56,7 +56,7 @@
 html {
     scroll-behavior: smooth;
     scroll-padding-top: 80px;
-    scroll-snap-type: y mandatory;
+    /* scroll-snap removed for natural scrolling */
 }
 
 body {
@@ -207,16 +207,14 @@ img {
    HERO SECTION
    ----------------------------------------------------------------------------- */
 .hero {
-    height: 100vh;
-    max-height: 100vh;
+    min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
     position: relative;
     padding: 120px 24px 80px;
     overflow: hidden;
-    scroll-snap-align: start;
-    scroll-snap-stop: always;
+    /* scroll-snap removed for natural scrolling */
 }
 
 .hero-bg {
@@ -307,19 +305,14 @@ img {
 }
 
 /* -----------------------------------------------------------------------------
-   SECTIONS (Strict Viewport)
+   SECTIONS (Natural Flow - No Scroll Snap)
    ----------------------------------------------------------------------------- */
 .section {
-    height: 100vh;
-    max-height: 100vh;
-    padding: 80px 0 40px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    scroll-snap-align: start;
-    scroll-snap-stop: always;
-    overflow: hidden;
+    min-height: auto;
+    padding: 80px 0;
+    display: block;
     position: relative;
+    /* Natural document flow - no scroll-snap */
 }
 
 .section-alt {
@@ -354,94 +347,35 @@ img {
 }
 
 /* -----------------------------------------------------------------------------
-   HORIZONTAL CAROUSEL
+   CONTENT GRID (Replaces Horizontal Carousel)
    ----------------------------------------------------------------------------- */
 .carousel-wrapper {
     position: relative;
     width: 100%;
-    flex: 1;
-    display: flex;
-    align-items: center;
-    min-height: 0;
 }
 
+/* Convert carousel to responsive 2-column grid */
 .carousel {
-    display: flex;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    scroll-behavior: smooth;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
     gap: 24px;
-    padding: 20px 60px;
+    padding: 20px 0;
     width: 100%;
 }
 
-.carousel::-webkit-scrollbar {
+.carousel-item {
+    /* Natural sizing in grid */
+    width: 100%;
+}
+
+/* Hide carousel navigation (no longer needed) */
+.carousel-nav {
     display: none;
 }
 
-.carousel-item {
-    flex: 0 0 calc(100% - 120px);
-    scroll-snap-align: center;
-    max-width: 800px;
-    margin: 0 auto;
-}
-
-/* Carousel Navigation Arrows */
-.carousel-nav {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 50px;
-    height: 50px;
-    background: rgba(255, 255, 255, 0.1);
-    border: none;
-    border-radius: 50%;
-    color: var(--text-primary);
-    font-size: 1.5rem;
-    cursor: pointer;
-    z-index: 10;
-    transition: all var(--transition-medium);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.carousel-nav:hover {
-    background: rgba(0, 217, 255, 0.3);
-    transform: translateY(-50%) scale(1.1);
-}
-
-.carousel-nav.prev {
-    left: 10px;
-}
-
-.carousel-nav.next {
-    right: 10px;
-}
-
-/* Carousel Pagination Dots */
+/* Hide carousel dots (no longer needed) */
 .carousel-dots {
-    display: flex;
-    justify-content: center;
-    gap: 8px;
-    padding: 16px 0;
-}
-
-.carousel-dot {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.2);
-    border: none;
-    cursor: pointer;
-    transition: all var(--transition-fast);
-}
-
-.carousel-dot.active {
-    background: var(--accent-primary);
-    transform: scale(1.2);
+    display: none;
 }
 
 /* -----------------------------------------------------------------------------
@@ -510,7 +444,7 @@ img {
 }
 
 /* -----------------------------------------------------------------------------
-   FRAMEWORK SECTION (Infographic)
+   FRAMEWORK SECTION (Infographic) - Responsive Images
    ----------------------------------------------------------------------------- */
 .framework-image-container {
     display: flex;
@@ -523,7 +457,10 @@ img {
 
 .framework-image {
     max-width: 100%;
+    width: auto;
     height: auto;
+    max-height: 70vh;
+    object-fit: contain;
     border-radius: 12px;
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
 }
@@ -536,12 +473,12 @@ img {
 }
 
 /* -----------------------------------------------------------------------------
-   PROBLEM SECTION
+   PROBLEM SECTION (2 columns)
    ----------------------------------------------------------------------------- */
 .problem-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 16px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
 }
 
 .problem-card {
@@ -688,7 +625,14 @@ img {
     grid-template-columns: 1fr auto 1fr;
     gap: 24px;
     padding: 32px;
-    align-items: center;
+    align-items: stretch;
+}
+
+.challenge-problem,
+.challenge-solution {
+    padding: 0;
+    display: flex;
+    flex-direction: column;
 }
 
 .challenge-problem,
@@ -788,7 +732,7 @@ img {
     border-radius: 12px;
     width: 100%;
     height: auto;
-    max-height: 280px;
+    max-height: 400px;
     object-fit: contain;
     margin-bottom: 12px;
 }
@@ -1084,4 +1028,67 @@ img {
     .hero-title {
         font-size: 2rem;
     }
+}
+
+/* -----------------------------------------------------------------------------
+   LIGHTBOX (Full-Screen Image Viewer)
+   ----------------------------------------------------------------------------- */
+.lightbox-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.95);
+    z-index: 10000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    cursor: zoom-out;
+}
+
+.lightbox-overlay.active {
+    display: flex;
+}
+
+.lightbox-image {
+    max-width: 95vw;
+    max-height: 90vh;
+    object-fit: contain;
+    border-radius: 8px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+.lightbox-close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    font-size: 3rem;
+    color: white;
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.lightbox-close:hover {
+    transform: scale(1.2);
+}
+
+/* Make all images clickable */
+.framework-image,
+.gallery-item img,
+.carousel-item img,
+img[data-lightbox] {
+    cursor: zoom-in;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.framework-image:hover,
+.gallery-item img:hover,
+.carousel-item img:hover,
+img[data-lightbox]:hover {
+    transform: scale(1.02);
+    box-shadow: 0 15px 50px rgba(0, 217, 255, 0.2);
 }

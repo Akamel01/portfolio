@@ -521,8 +521,9 @@ img {
 }
 
 .project-metrics {
-    display: flex;
-    gap: 24px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px 24px;
     padding-top: 16px;
     border-top: 1px solid var(--glass-border);
 }
@@ -533,13 +534,13 @@ img {
 }
 
 .metric-value {
-    font-size: 1.4rem;
+    font-size: 1.2rem;
     font-weight: 700;
     color: var(--accent-success);
 }
 
 .metric-label {
-    font-size: 0.75rem;
+    font-size: 0.7rem;
     color: var(--text-muted);
     text-transform: uppercase;
     letter-spacing: 0.5px;
