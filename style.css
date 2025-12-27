@@ -658,6 +658,77 @@ img {
 }
 
 /* -----------------------------------------------------------------------------
+   PUBLICATIONS SECTION
+   ----------------------------------------------------------------------------- */
+.publications-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.publication-card {
+    display: flex;
+    gap: 24px;
+    padding: 24px 28px;
+    align-items: flex-start;
+}
+
+.publication-card:hover {
+    transform: translateY(-2px);
+}
+
+.publication-year {
+    min-width: 60px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--accent-primary);
+    padding-top: 2px;
+}
+
+.publication-content {
+    flex: 1;
+}
+
+.publication-title {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+    line-height: 1.5;
+}
+
+.publication-authors {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin-bottom: 10px;
+}
+
+.publication-venue {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.venue-badge {
+    display: inline-block;
+    padding: 4px 12px;
+    background: rgba(168, 85, 247, 0.15);
+    border: 1px solid rgba(168, 85, 247, 0.3);
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--accent-secondary);
+}
+
+.publication-pages {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+/* -----------------------------------------------------------------------------
    RESPONSIVE
    ----------------------------------------------------------------------------- */
 @media (max-width: 768px) {
@@ -685,5 +756,14 @@ img {
     .contact-links {
         flex-direction: column;
         align-items: center;
+    }
+
+    .publication-card {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .publication-year {
+        min-width: auto;
     }
 }
