@@ -100,53 +100,30 @@
                     class="framework-image" style="display: inline-block; max-width: 100%; height: auto;">
             </div>
 
-            <!-- Trajectory Data Animation -->
-            <div class="trajectory-video-container" style="margin-top: 48px;">
+
+
+            <!-- Interactive Map (Macro View) -->
+            <div class="trajectory-video-container" style="margin-top: 60px;">
                 <h3 style="color: var(--text-primary); text-align: center; margin-bottom: 16px; font-size: 1.4rem;">
-                    📡 Real-World Data Collection
+                    📡 Interactive Real-World Data Collection
                 </h3>
                 <p
                     style="color: var(--text-secondary); text-align: center; max-width: 700px; margin: 0 auto 24px; line-height: 1.6;">
-                    Animated visualization of trajectory data captured by an autonomous vehicle fleet at a fixed
-                    intersection—the raw input driving our safety models.
+                    Explore trajectory data from multiple intersections along the Las Vegas corridor. Click on any site
+                    to view processed conflict patterns.
                 </p>
-                <div
-                    style="display: inline-flex; gap: 24px; align-items: flex-start; flex-wrap: wrap; justify-content: center; width: 100%;">
-                    <!-- Video Container -->
-                    <div class="glass-panel" style="overflow: hidden; border-radius: 16px; display: inline-block;">
-                        <video autoplay loop muted playsinline style="max-width: 100%; height: auto; display: block;">
-                            <source src="assets/trajectories.mp4" type="video/mp4">
-                            Your browser does not support the video tag.
-                        </video>
-                    </div>
-
-                    <!-- Legend -->
-                    <div class="glass-panel" style="padding: 24px; border-radius: 16px; min-width: 180px;">
-                        <h4
-                            style="color: var(--text-primary); margin-bottom: 16px; font-size: 1rem; text-align: center;">
-                            🎨 Trajectory Legend
-                        </h4>
-                        <div style="display: flex; flex-direction: column; gap: 12px;">
-                            <div style="display: flex; align-items: center; gap: 12px;">
-                                <div style="width: 32px; height: 4px; background: #FFD700; border-radius: 2px;"></div>
-                                <span style="color: var(--text-secondary); font-size: 0.95rem;">Vehicles</span>
-                            </div>
-                            <div style="display: flex; align-items: center; gap: 12px;">
-                                <div style="width: 32px; height: 4px; background: #FF8C00; border-radius: 2px;"></div>
-                                <span style="color: var(--text-secondary); font-size: 0.95rem;">Bikes</span>
-                            </div>
-                            <div style="display: flex; align-items: center; gap: 12px;">
-                                <div style="width: 32px; height: 4px; background: #90EE90; border-radius: 2px;"></div>
-                                <span style="color: var(--text-secondary); font-size: 0.95rem;">Pedestrians</span>
-                            </div>
-                        </div>
-                    </div>
+                <div class="glass-panel"
+                    style="overflow: hidden; border-radius: 16px; max-width: 100%; border: 1px solid var(--glass-border);">
+                    <iframe src="interactive_corridor_map_updated.html"
+                        style="width: 100%; height: 600px; border: none; display: block;"
+                        title="Interactive Corridor Map"></iframe>
                 </div>
-                <p
-                    style="color: var(--text-muted); text-align: center; font-size: 0.9rem; margin-top: 16px; font-style: italic;">
-                    Vehicle trajectories recorded from AV sensors at a signalized intersection, enabling conflict
-                    extraction and safety analysis.
-                </p>
+                <div style="text-align: center; margin-top: 20px;">
+                    <a href="interactive_corridor_map_updated.html" target="_blank" class="hero-cta"
+                        style="font-size: 0.9rem; padding: 10px 24px;">
+                        <span>Launch Fullscreen Map</span>
+                    </a>
+                </div>
             </div>
 
             <!-- GEV Distribution Animation -->

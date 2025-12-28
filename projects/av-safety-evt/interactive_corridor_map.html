@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Corridor Trajectories - Interactive Map</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Leaflet CSS & JS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <style>
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+            font-family: 'Roboto', sans-serif;
+            overflow: hidden;
+            background: #1a1a1a;
+        }
+
+        #container {
+            display: flex;
+            height: 100vh;
+            width: 100vw;
+        }
+
+        #sidebar {
+            width: 30%;
+            /* Responsive width */
+            min-width: 320px;
+            max-width: 450px;
+            background: #222;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            border-right: 1px solid #444;
+            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            flex-shrink: 0;
+        }
+
+        #map {
+            flex-grow: 1;
+            height: 100%;
+            background: #000;
+        }
+
+        /* Video Player Styling */
+        .video-container {
+            padding: 20px;
+            text-align: center;
+            background: #000;
+        }
+
+        video {
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+            background: #000;
+        }
+
+        .info-panel {
+            padding: 20px;
+            flex-grow: 1;
+        }
+
+        h1 {
+            font-size: 20px;
+            margin-top: 0;
+            margin-bottom: 20px;
+            color: #FF9500;
+            border-bottom: 1px solid #444;
+            padding-bottom: 15px;
+        }
+
+        h2 {
+            font-size: 24px;
+            margin: 10px 0;
+        }
+
+        p.desc {
+            color: #aaa;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .status {
+            margin-top: 15px;
+            padding: 10px;
+            background: #333;
+            border-radius: 4px;
+            font-size: 13px;
+        }
+
+        .highlight {
+            color: #FF9500;
+            font-weight: bold;
+        }
+
+        /* Leaflet Tweaks */
+        .leaflet-div-icon {
+            background: transparent;
+            border: none;
+        }
+
+        .site-label {
+            font-size: 12px;
+            font-weight: bold;
+            color: white;
+            text-shadow: 2px 2px 3px black, -1px -1px 3px black;
+            white-space: nowrap;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="container">
+        <div id="sidebar">
+            <div class="video-container">
+                <video id="main-player" controls muted playsinline poster="">
+                    <!-- Source will be replaced by JS -->
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+
+            <div class="info-panel">
+                <h1>Corridor Analysis</h1>
+
+                <div id="site-info">
+                    <h2 id="site-title">Select a Site</h2>
+                    <p class="desc" id="site-desc">
+                        Click on any orange circle on the map to view the trajectory analysis video for that site.
+                    </p>
+                </div>
+
+                <div class="status">
+                    Current View: <span id="current-view" class="highlight">Map Overview</span>
+                </div>
+
+                <!-- Specific Legend -->
+                <div style="margin-top: 20px; border-top: 1px solid #444; padding-top: 15px;">
+                    <h3
+                        style="font-size: 14px; color: #aaa; margin: 0 0 10px 0; text-transform: uppercase; letter-spacing: 1px;">
+                        Trajectory Legend</h3>
+                    <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+                        <div style="display: flex; align-items: center; gap: 6px;">
+                            <span
+                                style="width: 12px; height: 12px; border-radius: 50%; background: rgb(60, 76, 231);"></span>
+                            <span style="font-size: 12px; color: #ccc;">Vehicle</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 6px;">
+                            <span
+                                style="width: 12px; height: 12px; border-radius: 50%; background: rgb(113, 204, 46);"></span>
+                            <span style="font-size: 12px; color: #ccc;">Pedestrian</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 6px;">
+                            <span
+                                style="width: 12px; height: 12px; border-radius: 50%; background: rgb(18, 156, 243);"></span>
+                            <span style="font-size: 12px; color: #ccc;">Bicycle</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="map"></div>
+    </div>
+
+    <script>
+        // Data injected from Python
+        const sites = [{ "id": 1, "lat": 36.12753396653757, "lon": -115.16784764729418, "video": "assets/videos/site_1_trajectories.mp4" }, { "id": 2, "lat": 36.12523480684139, "lon": -115.16942185384138, "video": "assets/videos/site_2_trajectories.mp4" }, { "id": 3, "lat": 36.12353637526751, "lon": -115.17060556056786, "video": "assets/videos/site_3_trajectories.mp4" }, { "id": 4, "lat": 36.12206010355174, "lon": -115.17143912429619, "video": "assets/videos/site_4_trajectories.mp4" }, { "id": 5, "lat": 36.11984876505152, "lon": -115.17243427678098, "video": "assets/videos/site_5_trajectories.mp4" }, { "id": 6, "lat": 36.09743978532786, "lon": -115.17329400232005, "video": "assets/videos/site_6_trajectories.mp4" }, { "id": 7, "lat": 36.100765092918465, "lon": -115.17287972462898, "video": "assets/videos/site_7_trajectories.mp4" }, { "id": 8, "lat": 36.10404928886446, "lon": -115.1729378269039, "video": "assets/videos/site_8_trajectories.mp4" }, { "id": 9, "lat": 36.106564297188896, "lon": -115.17315277639331, "video": "assets/videos/site_9_trajectories.mp4" }, { "id": 10, "lat": 36.108687879533896, "lon": -115.17291679021784, "video": "assets/videos/site_10_trajectories.mp4" }, { "id": 11, "lat": 36.111279979290664, "lon": -115.17282438611129, "video": "assets/videos/site_11_trajectories.mp4" }];
+        const mapCenter = [36.11336366730672, -115.171795815396];
+
+        // Initialize Map
+        var map = L.map('map', {
+            center: mapCenter,
+            zoom: 14,
+            zoomControl: false, // Move zoom control
+            attributionControl: false
+        });
+
+        L.control.zoom({
+            position: 'topright'
+        }).addTo(map);
+
+        // Google Satellite Tiles
+        L.tileLayer('https://mt1.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', {
+            maxZoom: 20,
+            attribution: 'Map data ©2024 Google'
+        }).addTo(map);
+
+        // Video Player Reference
+        const player = document.getElementById('main-player');
+        const siteTitle = document.getElementById('site-title');
+        const siteDesc = document.getElementById('site-desc');
+        const currentView = document.getElementById('current-view');
+
+        // Active marker tracking
+        let activeCircle = null;
+
+        // Add Markers
+        sites.forEach(site => {
+            // Circle Marker
+            var circle = L.circleMarker([site.lat, site.lon], {
+                radius: 10,
+                fillColor: "#FF9500",
+                color: "#fff",
+                weight: 2,
+                opacity: 1,
+                fillOpacity: 0.8
+            }).addTo(map);
+
+            // Label
+            var label = L.marker([site.lat, site.lon], {
+                icon: L.divIcon({
+                    className: 'leaflet-div-icon',
+                    html: '<div class="site-label">Site ' + site.id + '</div>',
+                    iconSize: [100, 20],
+                    iconAnchor: [50, -15] // Center label above marker
+                })
+            }).addTo(map);
+
+            // Interaction
+            function activateSite() {
+                // Reset previous active marker styling
+                if (activeCircle) {
+                    activeCircle.setStyle({
+                        fillColor: "#FF9500",
+                        radius: 10,
+                        color: "#fff",
+                        weight: 2
+                    });
+                }
+
+                // Highlight current marker
+                circle.setStyle({
+                    fillColor: "#ff0000",
+                    radius: 14,
+                    color: "#ffdd00",
+                    weight: 4
+                });
+                activeCircle = circle;
+
+                // Update Info Panel
+                siteTitle.innerText = "Site " + site.id;
+                siteDesc.innerText = "Viewing trajectory data for Site " + site.id + ".";
+                currentView.innerText = "Site " + site.id;
+
+                // Update Video and Play
+                // We set the src directly to trigger load
+                player.src = site.video;
+                player.load();
+
+                // Attempt autoplay
+                var playPromise = player.play();
+                if (playPromise !== undefined) {
+                    playPromise.then(_ => {
+                        // Automatic playback started!
+                        console.log("Autoplay started");
+                    }).catch(error => {
+                        // Auto-play was prevented
+                        console.error("Autoplay prevent:", error);
+                        siteDesc.innerHTML += "<br><span style='color:orange'>⚠ Autoplay blocked. Press play on the video.</span>";
+                    });
+                }
+            }
+
+            // Click handler
+            circle.on('click', activateSite);
+            // Also click on label to activate
+            label.on('click', activateSite);
+        });
+
+        // Auto-select Site 1 on load (Optional, uncomment if desired)
+        // sites.length > 0 && setTimeout(() => {
+        //    // Trigger click on first site logic
+        // }, 1000);
+
+    </script>
+
+</body>
+
+</html>

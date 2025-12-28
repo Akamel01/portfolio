@@ -182,6 +182,18 @@ A project page should include these sections in order. Pages use **natural scrol
 </div>
 ```
 
+**Optional: Methodology Document Button**:
+If the project has a formal methodology PDF, add a secondary button in the Hero section:
+```html
+<a href="../../assets/methodology.pdf" target="_blank" class="hero-cta-secondary" style="margin-left: 16px; background: linear-gradient(135deg, #a855f7, #6366f1);">
+    <span>View Methodology Document</span>
+</a>
+<!-- Add copyright notice below if needed -->
+<p style="color: var(--text-muted); font-size: 0.8rem; margin-top: 16px;">
+    © [Year] [Name]. Methodology document is copyrighted.
+</p>
+```
+
 ### 2. Framework/Overview Section
 **Purpose**: Visual summary of the approach
 
@@ -192,11 +204,16 @@ A project page should include these sections in order. Pages use **natural scrol
 | Description | Brief explanation of methodology |
 | Visual | Full-width infographic showing the data pipeline |
 
-**Infographic Requirements**:
+**Infographic/Animation Requirements**:
 - Dark background to match theme
 - Shows data flow: Input → Processing → Output
 - Uses cyan/purple accent colors
-- Maximum 5-6 steps
+- **Video Support**: Use MP4 (h.264) for animations (`autoplay loop muted playsinline`) instead of GIFs for better quality.
+    ```html
+    <video autoplay loop muted playsinline style="width: 100%; height: auto; display: block;">
+        <source src="assets/animation.mp4" type="video/mp4">
+    </video>
+    ```
 
 ### 3. Problem Statement Section
 **Purpose**: Establish why this project matters
@@ -452,6 +469,9 @@ Use this as a starting point for new project pages:
 | `.results-metrics` | **3-column grid** for result metrics |
 | `.lightbox-overlay` | Full-screen image overlay (auto-attached via JS) |
 
+### Responsive Design Note
+For mobile devices (<1024px), all grid layouts (`.problem-grid`, `.tech-grid`, `.gallery-grid`, `.carousel`) **MUST** stack in a single column (`grid-template-columns: 1fr`). This is handled in the shared CSS media queries.
+
 ### Copy the style.css from rlc-optimizer
 The RLC Optimizer project has the complete CSS file. Copy it for new projects and modify as needed.
 
@@ -660,6 +680,9 @@ For questions about these guidelines:
 ### December 2024 Updates
 - **Removed scroll-snap**: Pages now use natural scrolling
 - **Changed to 2-column grids**: Problem, Technical, Innovation, and Challenges sections use 2-column layouts
+- **Mobile Layout**: Enforced single-column layout for all grids on mobile/tablet (<1024px)
 - **Added lightbox**: All images are clickable and open in full-screen view
+- **Video Support**: Added standard for MP4 animations in Framework/Technical sections
+- **Methodology Documents**: Added standard for linking PDF methodology documents
 - **Horizontal challenge/solution**: Challenge cards show Problem → Solution side-by-side
 - **Responsive images**: Images handle any aspect ratio with `object-fit: contain`

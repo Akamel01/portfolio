@@ -946,7 +946,8 @@ img {
 
     .problem-grid,
     .tech-grid,
-    .gallery-grid {
+    .gallery-grid,
+    .carousel {
         grid-template-columns: 1fr;
     }
 
